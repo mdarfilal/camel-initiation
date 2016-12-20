@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camelContext id="xml-1" xmlns="http://camel.apache.org/schema/spring">
+
+		<endpoint id="repoIn" uri="file:work/in" />
+		<endpoint id="repoOutA" uri="file:work/outA" />
+		<endpoint id="repoOutB" uri="file:work/outB" />
+		<endpoint id="repoOutDefault" uri="file:work/outDefault" />
+
+
+		<!-- route all files in one folder -->
+		<!-- <route> -->
+		<!-- <from ref="repoIn" /> -->
+		<!-- <to ref="repoOutA" /> -->
+		<!-- </route> -->
+
+		<!-- route according extension -->
+		<route>
+			<from ref="repoIn" />
+			<choice>
+				<when>
+					<simple>${file:ext} == 'xml'</simple>
+					<to ref="repoOutA" />
+				</when>
+				<when>
+					<simple>${file:ext} == 'txt'</simple>
+					<to ref="repoOutB" />
+				</when>
+				<otherwise>
+					<to ref="repoOutDefault" />
+				</otherwise>
+			</choice>
+		</route>
+
+		<!-- route according content -->
+		<!-- <route> -->
+		<!-- <from ref="repoIn" /> -->
+		<!-- <choice> -->
+		<!-- <when> -->
+		<!-- <xpath>/demande/type = 'A'</xpath> -->
+		<!-- <to ref="repoOutA" /> -->
+		<!-- </when> -->
+		<!-- <when> -->
+		<!-- <xpath>/demande/type = 'B'</xpath> -->
+		<!-- <to ref="repoOutB" /> -->
+		<!-- </when> -->
+		<!-- <otherwise> -->
+		<!-- <to ref="repoOutDefault" /> -->
+		<!-- </otherwise> -->
+		<!-- </choice> -->
+		<!-- </route> -->
+
+	</camelContext>
+</beans>
