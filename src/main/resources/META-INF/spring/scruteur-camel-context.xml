@@ -7,8 +7,9 @@
 	<camelContext id="camelCtx" xmlns="http://camel.apache.org/schema/spring">
 		<endpoint id="default" uri="file:work/outA" />
 		<route>
-			<from uri="file:work/maille?recursive=true&amp;maxDepth=2&amp;move=integr" />
-			<to ref="default"/>
+			<from uri="file:work/maille?recursive=true&amp;maxDepth=2&amp;move=integr&amp;noop=false" />
+			<log loggingLevel="INFO" message="Moving ${file:name}" />
+			<to ref="default" />
 		</route>
 	</camelContext>
 </beans>
