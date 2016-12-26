@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-	<camelContext id="xml-1" xmlns="http://camel.apache.org/schema/spring">
+	<camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring">
 
 		<endpoint id="repoIn" uri="file:work/in" />
 		<endpoint id="repoOutA" uri="file:work/outA" />

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-	<camelContext id="camelCtx" xmlns="http://camel.apache.org/schema/spring">
+	<camelContext id="scruteurContext" xmlns="http://camel.apache.org/schema/spring">
 		<endpoint id="default" uri="file:work/outA" />
 		<route>
 			<from uri="file:work/maille?recursive=true&amp;maxDepth=2&amp;move=integr&amp;noop=false" />
