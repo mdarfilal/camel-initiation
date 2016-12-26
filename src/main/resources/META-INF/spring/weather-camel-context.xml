@@ -5,12 +5,12 @@
           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<camelContext id="weatherContext" xmlns="http://camel.apache.org/schema/spring">
-		<propertyPlaceholder id="weatherProperties" location="classpath:/weather.properties" />
-		<endpoint id="weatherUrl" uri="weather:?appid={{appid}}" />
+		<propertyPlaceholder id="weatherProperties" location="weather.properties" />
+		<endpoint id="weatherUrl" uri="weather:?appid={{appid}}&amp;consumer.delay={{polling.delay}}" />
 
 		<route>
 			<from ref="weatherUrl" />
-			<log loggingLevel="INFO" message="Getting weather" />
+			<log loggingLevel="INFO" message="Getting weather - next polling in {{polling.delay}}" />
 			<to uri="file:work" />
 		</route>
 	</camelContext>
